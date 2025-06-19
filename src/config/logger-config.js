@@ -37,5 +37,12 @@ module.exports = {
     log: require("pino")({
         timestamp: customTimestamp,
         base: null,
+        transport: {
+            target: "pino-pretty",
+            options: {
+                colorize: true,
+                translateTime: false,
+            },
+        },
     }),
 };
