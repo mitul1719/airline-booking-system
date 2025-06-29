@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { AirplaneSeeder } = require("../db/seeders");
 
 const connectDB = async (logger) => {
     return mongoose
@@ -6,6 +7,7 @@ const connectDB = async (logger) => {
         .then(() => {
             if (logger) {
                 logger.info("Database connected");
+                // AirplaneSeeder.seedAirplanes();
             }
         })
         .catch((err) => {

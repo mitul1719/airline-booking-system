@@ -15,3 +15,11 @@ module.exports.createAirplane = async (airplaneData) => {
         throw new AppError(error.message, StatusCodes.INTERNAL_SERVER_ERROR);
     }
 };
+
+module.exports.getAirplanes = async () => {
+    try {
+        return await airplaneRepository.findAll();
+    } catch (error) {
+        throw new AppError(error.message, StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+};

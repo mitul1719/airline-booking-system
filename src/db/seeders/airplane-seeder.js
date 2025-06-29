@@ -34,12 +34,22 @@ function generateRandomAirplanes(count = 50) {
 }
 
 async function seedAirplanes() {
-    const airplanes = generateRandomAirplanes(50);
+    const airplanes = generateRandomAirplanes(500);
 
-    await AirPlaneModel.deleteMany();
-    await AirPlaneModel.insertMany(airplanes);
+    console.time("Delete Operation");
+    const deleted = await AirPlaneModel.deleteMany({}); // This will delete all documents
+    console.timeEnd("Delete Operation");
 
-    console.log("✅ 50 random airplanes seeded!");
+    console.time("Insert Operation");
+    const inserted = await AirPlaneModel.insertMany(airplanes);
+    console.timeEnd("Insert Operation");
+
+    console.log({
+        deleted: deleted.deletedCount,
+        inserted: inserted.length,
+    });
+
+    console.log("✅ 1000000 random airplanes seeded!");
 }
 
 module.exports = {

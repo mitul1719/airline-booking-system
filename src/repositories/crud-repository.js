@@ -8,7 +8,9 @@ class CrudRepository {
     }
 
     async findAll() {
-        return await this.model.find();
+        const totalCount = await this.model.countDocuments();
+        const data = await this.model.find();
+        return { data, totalCount };
     }
 
     async findById(id) {
